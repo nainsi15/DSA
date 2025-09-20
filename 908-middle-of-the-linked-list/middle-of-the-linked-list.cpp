@@ -11,16 +11,23 @@
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
-         vector<ListNode*> arr;
+         ListNode *temp = head;
+    int count = 0;
 
-   ListNode* temp = head;
-   while( temp != NULL){
-    arr.push_back(temp);
-    temp = temp->next;
-   }
-   int mid = arr.size()/2;
+    while(temp != NULL){
+        count++;
+        temp = temp->next;
+    }
+    int middleNode = (count/2)+1;
+    temp = head;
 
-        return arr[mid];
-
+    while(temp != NULL){
+        middleNode = middleNode - 1;
+        if(middleNode == 0){
+            break;
+        }
+        temp = temp->next;
+    }
+    return temp;
     }
 };
