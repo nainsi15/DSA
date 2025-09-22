@@ -9,23 +9,30 @@
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        ListNode * temp1 = headA;
-        ListNode * temp2 = headB;
+        if(headA == NULL || headB == NULL) return NULL;
+        
+        //Initialize two pointers to traverse the lists
+        ListNode *d1 = headA;
+        ListNode *d2 = headB;
 
-        if(temp1 == NULL || temp2 ==NULL){
-            return NULL;
+        //Traverse both lists until the pointers meet
+        while (d1 != d2) {
+            
+            // Move both the pointers by one place
+            d1 = d1-> next;
+            d2 = d2-> next;
+            
+            // If intersectionn is found
+            if(d1 == d2) return d1;
+            
+            // If either of the two pointers reaches end, place at the front of next linked list 
+            if(d1 == NULL) d1 = headB;
+            if(d2 == NULL) d2 = headA;
+            
+            
         }
 
-        while(temp1 != temp2){
-            temp1 =temp1->next;
-            temp2 = temp2->next;
-
-            if(temp1 == temp2) return temp1;
-
-            if(temp1 == NULL) temp1 = headB;
-            if(temp2 == NULL) temp2 = headA;
-
-        }
-        return temp1;
+        //Return the intersection node
+        return d1;
     }
 };
