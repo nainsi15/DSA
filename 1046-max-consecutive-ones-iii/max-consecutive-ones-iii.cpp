@@ -7,7 +7,7 @@ public:
         if(nums[r] == 0) {
         zero++;
         }
-        if(zero > k){
+        while(zero > k){
           if(nums[l] == 0){ 
           zero--;
         }
