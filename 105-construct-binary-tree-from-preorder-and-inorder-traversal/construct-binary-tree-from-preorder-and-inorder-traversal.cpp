@@ -19,6 +19,8 @@ public:
         }
         return buildTree(preorder, 0 , preorder.size()-1, inorder, 0, inorder.size()-1, inMap);
     }
+
+    //helper function
     TreeNode* buildTree(vector<int> &preorder, int preStart, int preEnd, vector<int> & inorder, int inStart, int inEnd , unordered_map<int, int> & inMap){
         if(preStart > preEnd || inStart >  inEnd){
             return nullptr;
