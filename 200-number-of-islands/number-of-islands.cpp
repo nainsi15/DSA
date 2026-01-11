@@ -15,7 +15,7 @@ private:
         int col = q.front().second;
         q.pop();
 
-        //traverse the neighbours
+        //traverse the neighbours only four directions
          int drow[] = {-1, 0, 1, 0};
         int dcol[] = {0, 1, 0, -1};
 
