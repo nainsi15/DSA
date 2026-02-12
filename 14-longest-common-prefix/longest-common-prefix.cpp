@@ -13,7 +13,7 @@ int n = strs.size();
                 return ans;
             }
             else{
-               ans += first[i];
+               ans.push_back(first[i]);
             }
         }
         return ans;
