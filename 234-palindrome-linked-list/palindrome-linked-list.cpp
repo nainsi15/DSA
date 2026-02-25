@@ -11,23 +11,23 @@
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        vector<int> arr;
+        stack<int> st;
         ListNode *temp = head;
 
-        // storing the LL in array
+        // storing the LL in stack
         while(temp != NULL){
-            arr.push_back(temp->val);
+            st.push(temp->val);
             temp = temp->next;
         }
-        int i = 0 ; int j = arr.size()-1;
+         temp = head;
 
-        while(i <= j){
-            if(arr[i] != arr[j]){
+        while(temp != NULL){
+            if(temp->val != st.top()){
                 return false;
             }
             else{
-                i++;
-                j--;
+                st.pop();
+                temp = temp->next;
             }
         }
         return true;
