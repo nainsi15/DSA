@@ -1,36 +1,20 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        vector<int> ans; 
-        int n = nums.size();
-        vector<vector<int>> eleIndex;
-        for(int i = 0; i < nums.size(); i++){
-            eleIndex.push_back({nums[i], i});
+     unordered_map<int, int> mp;
+     vector<int> ans;
+
+     for(int i = 0 ; i < nums.size(); i++){
+        int first = nums[i];
+        int sec = target - first;
+
+        if(mp.find(sec) != mp.end()){
+            ans.push_back(i);
+            ans.push_back(mp[sec]);
         }
-        
-        sort(eleIndex.begin(), eleIndex.end(), [](const vector<int>& a, const vector<int>& b) {
-           return a[0] < b[0]; 
-        });
-
-        int left = 0, right = n - 1; 
-
-        while (left < right) {
-             
-            int sum = eleIndex[left][0] + eleIndex[right][0];
-
-            if (sum == target) {
-                ans.push_back(eleIndex[left][1]);
-                ans.push_back(eleIndex[right][1]);
-                return ans;
-                
-            } else if (sum < target) {
-                left++;
-                
-            } else {
-                right--;
-                
-            }
-        }
-        return {-1, -1};
+        mp[first] = i;
+     }
+     return ans;
     }
 };
+
