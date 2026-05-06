@@ -5,14 +5,13 @@ public:
      vector<int> ans;
 
      for(int i = 0 ; i < nums.size(); i++){
-        int first = nums[i];
-        int sec = target - first;
+        int sec = target - nums[i];
 
         if(mp.find(sec) != mp.end()){
             ans.push_back(i);
             ans.push_back(mp[sec]);
         }
-        mp[first] = i;
+        mp[nums[i]] = i;
      }
      return ans;
     }
