@@ -1,44 +1,22 @@
 class Solution {
 public:
- void reverseString(string &s, int start, int end) {
-        while (start < end) {
-            swap(s[start++], s[end--]);
-        }
-    }
     string reverseWords(string s) {
-int n = s.length();
+         int n = s.size();
+        reverse(s.begin(), s.end());
+        string ans = "";
 
-        // Reverse the entire string
-        reverseString(s, 0, n - 1);
-
-        int i = 0, j = 0, start = 0, end = 0;
-
-        while (j < n) {
-            // Skip spaces
-            while (j < n && s[j] == ' ') j++;
-            if (j == n) break;
-
-            start = i;
-
-            // Copy the word characters forward
-            while (j < n && s[j] != ' ') {
-                s[i++] = s[j++];
-            }
-
-            end = i - 1;
-
-            // Reverse the current word using start and end
-            reverseString(s, start, end);
-
-            // Add a space after the word if it's not the last word
-            if (j < n) {
-                s[i++] = ' ';
-            }
+        for(int i = 0; i < n ; i++){
+        //detecting each word
+        string word = "";
+            while(i < n && s[i] != ' '){
+                word += s[i];
+                i++;
         }
-
-        // Remove trailing space if present
-        if (i > 0 && s[i - 1] == ' ') i--;
-
-        return s.substr(0, i);
+        //reversing each word
+        reverse(word.begin(), word.end());
+        if(word.length() > 0)
+            ans += " " + word;
+    }
+    return ans.substr(1);
     }
 };
