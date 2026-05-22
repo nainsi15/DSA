@@ -1,0 +1,26 @@
+class Solution {
+private:
+    void func(int ind, int n, int k, vector<int> &nums, vector<int> &arr,vector<vector<int>> &ans){
+        if(arr.size() == k){
+            ans.push_back(arr);
+            return;
+        }
+        if(ind == n) return ;
+        arr.push_back(nums[ind]);
+        func(ind+1, n, k, nums, arr, ans);
+        arr.pop_back();
+
+        func(ind+1, n, k, nums, arr, ans);
+    }
+public:
+    vector<vector<int>> combine(int n, int k) {
+        vector<int> arr;
+        vector<vector<int>> ans;
+        vector<int> nums;
+        for(int i = 1 ; i <= n ; i++){
+            nums.push_back(i);
+        }
+        func(0, n, k, nums, arr, ans);
+        return ans;
+    }
+};
