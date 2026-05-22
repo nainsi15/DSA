@@ -1,11 +1,13 @@
 class Solution {
 private:
     void func(int ind, int n, int k, vector<int> &nums, vector<int> &arr,vector<vector<int>> &ans){
+        if(ind == n){
         if(arr.size() == k){
             ans.push_back(arr);
+        }
             return;
         }
-        if(ind == n) return ;
+
         arr.push_back(nums[ind]);
         func(ind+1, n, k, nums, arr, ans);
         arr.pop_back();
