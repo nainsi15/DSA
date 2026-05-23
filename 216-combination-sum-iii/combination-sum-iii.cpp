@@ -1,28 +1,28 @@
 class Solution {
-private:
-    void func(int ind, int k, int n , vector<vector<int>>& ans, vector<int>& arr, int sum){
-        if(sum > n || arr.size() > k ) return;
-        if(arr.size() == k){
-            if(sum == n ){
-            ans.push_back(arr);
-        }
-        return;
-        }
-        for(int i = ind + 1 ; i<= 9 ;i++){
-            arr.push_back(i);
-            sum += i;
-            func(i, k, n , ans, arr, sum);
-            sum -= i;
-            arr.pop_back();
-        }
-
-
-    }
 public:
-    vector<vector<int> > combinationSum3(int k, int n) {
-    	vector<vector<int>> ans;
-        vector<int> arr;
-        func(0, k, n , ans, arr, 0);
+void func( int sum, int last, vector<int> &nums, int k, vector<vector<int>> &ans){
+    if( sum == 0 && nums.size() == k){
+        ans.push_back(nums);
+        return;
+    }
+    if( sum <= 0 || nums.size() > k){
+        return ;
+    }
+    for( int i = last; i <= 9; i++){
+        if(i <= sum){
+            nums.push_back(i);
+            func(sum - i, i + 1, nums, k ,ans);
+            nums.pop_back();
+        }
+        else{
+            break;
+        }
+    }
+}
+    vector<vector<int>> combinationSum3(int k, int n) {
+        vector<vector<int>> ans;
+        vector<int> nums;
+        func(n , 1, nums, k , ans);
         return ans;
     }
 };
