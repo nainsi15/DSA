@@ -1,56 +1,20 @@
 class Solution {
 public:
     vector<int> sortedSquares(vector<int>& nums) {
-        int x = nums.size();
-        vector<int> neg;
-        vector<int> pos;
-        
+       vector<int> res(nums.size(), 0);
+    int left = 0;
+    int right= nums.size()-1;
 
-        for(int i = 0 ; i < x; i++){
-            if(nums[i] < 0){
-                neg.push_back(nums[i]);
-            }
-            else{
-                pos.push_back(nums[i]);
-            }
+    for(int i = nums.size()-1; i >= 0; i-- ){
+        if(abs(nums[left]) > abs(nums[right])){
+            res[i] = nums[left] * nums[left];
+            left++;
         }
-        //only negative elements
-            for(int i = 0 ; i < neg.size(); i++){
-                neg[i] *= neg[i];
-            }
-            reverse(neg.begin(), neg.end());
-
-        //only positive elements
-            for(int i = 0 ; i < pos.size(); i++){
-                pos[i] *= pos[i];
-            }
-        
-        // if neg and pos 
-        int i = 0, j =0;
-        int n = neg.size();
-        int m = pos.size();
-        vector<int> res;
-
-        
-
-        while (i < n && j < m){
-            if(neg[i] < pos[j]){
-                res.push_back(neg[i]);
-                i++;
-            }
-            else{
-                res.push_back(pos[j]);
-                j++;
-            }
+        else{
+            res[i] = nums[right] * nums[right];
+            right--;
         }
-        while(i < n){
-            res.push_back(neg[i]);
-            i++;
-        }
-        while(j < m){
-            res.push_back(pos[j]);
-            j++;
-        }
+    }
     return res;
 
     }
